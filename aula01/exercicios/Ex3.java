@@ -5,7 +5,7 @@ public class Ex3 {
 
     public static void main(String args[]){
         Random r = new Random();
-        int sorteado = r.nextInt(10);
+        int sorteado = r.nextInt(100);
         int escolha = -1;
         int[] salva = new int[100];
 
