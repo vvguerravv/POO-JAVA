@@ -78,10 +78,10 @@ public class Pessoa {
     @Override
     public String toString() {
         return "CPF: " + cpf  +
+                "\nNome: " + name +
                 "\nEndereço: " + address +
                 "\nTelefone:" + telephone +
                 "\nSexo:" + sex +
-                "\nNome: " + name +
                 "\nEmail: " + email +
                 "\nData de nascimento: " + birthday;
     }
