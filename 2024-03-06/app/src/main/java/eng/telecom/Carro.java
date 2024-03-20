@@ -66,4 +66,8 @@ public class Carro {
     public String getModel() {
         return model;
     }
+
+    public static String aceleracao(){
+        return "9,8 m/s*s";
+    }
 }

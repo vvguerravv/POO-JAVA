@@ -12,14 +12,17 @@ public class AppCarro {
 //        c.acelerate(30);
 //        System.out.println(c.getSpeed());
 
-        Carro ferrari = new Carro("Sonata",0,500);
-        System.out.println(ferrari.getSpeed());
-        ferrari.acelerate(490);
-        System.out.println(ferrari.getSpeed());
-        ferrari.acelerate(50);
-        System.out.println(ferrari.getSpeed());
-        ferrari.slowDown(510);
-        System.out.println(ferrari.getSpeed());
+//        Carro ferrari = new Carro("Sonata",0,500);
+//        System.out.println(ferrari.getSpeed());
+//        ferrari.acelerate(490);
+//        System.out.println(ferrari.getSpeed());
+//        ferrari.acelerate(50);
+//        System.out.println(ferrari.getSpeed());
+//        ferrari.slowDown(510);
+//        System.out.println(ferrari.getSpeed());
+
+
+        Carro.aceleracao();
     }
 
 }
