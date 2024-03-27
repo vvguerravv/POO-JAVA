@@ -75,6 +75,37 @@ public class Retangulo {
         return 2*(this.largura + this.altura);
     }
 
+    public String toString() {
+        char altura = '|';
+        char largura = '-';
+        char cantos = '+';
+        StringBuilder retangulo = new StringBuilder();
+
+        for(int i = 0; i < this.altura;i++){
+            if(i == 0 || i == this.altura - 1){
+                retangulo.append(cantos);
+            } else  {
+                retangulo.append(altura);
+            }
+
+            for(int j = 0; j < this.largura-1;j++){
+                if(j == this.largura - 2 && (i ==0 || i == this.altura - 1)){
+                    retangulo.append(cantos);
+                } else if(i == 0 || i == this.altura - 1){
+                    retangulo.append(largura);
+                } else {
+                    if(j == this.largura - 2 ){
+                        retangulo.append(altura);
+                    } else{
+                        retangulo.append(" ");
+                    }
+                }
+            }
+            retangulo.append("\n");
+        }
+        return String.valueOf(retangulo);
+    }
+
 
 }
 
