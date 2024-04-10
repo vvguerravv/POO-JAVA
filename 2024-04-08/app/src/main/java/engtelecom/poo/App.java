@@ -22,11 +22,11 @@ public class App {
         System.out.println("..:SIGAA:..");
         System.out.println("Digite o que deseja fazer no momento:\n1 - Cadastrar\n2 - Atualizar\n3-Remover\n4-Listar dados de um aluno\n5-Listar todos os dados de todos os alunos\n6-Sair");
 
-        Scanner teclado = new Scanner(System.in);
         return teclado.nextInt();
     }
 
     public boolean cadastrar(){
+        teclado.nextLine();
         String nome;
         String matricula;
         String curso;
@@ -73,7 +73,43 @@ public class App {
     }
 
     public boolean atualizar(){
-        System.out.println("Atualizando");
+        teclado.nextLine();
+        System.out.print("Digite a matrícula do aluno que você gostaria de alterar: ");
+        String matricula =  teclado.nextLine();
+//        teclado.nextLine();
+        System.out.println("Digite o que você gostaria de alterar no cadastro deste aluno e digite 0 para confirmar as alterações: ");
+
+        int escolha;
+        do{
+            System.out.println("1 - Nome\n2 - Situação\n3 - Data de Nascimento\n4 - Email\n5 - CPF\n0 - Confirmar alterações");
+            escolha = teclado.nextInt();
+            switch (escolha){
+                case 1 :
+                    System.out.print("Digite o nome do aluno: ");
+                    teclado.nextLine();
+                    String novoNome = teclado.nextLine();
+                    bancoDeDados.get(matricula).setNome(novoNome);
+                    break;
+                case 2:
+                    System.out.print("Digite qual a situação do aluno ( Ativo, cancelado, trancado): ");
+                    teclado.nextLine();
+                    String novaSituacao = teclado.nextLine();
+                    bancoDeDados.get(matricula).setSituacao(novaSituacao);
+                    break;
+                case 3:
+                    System.out.print("Digite a data de nascimento do aluno: ");
+                    teclado.nextLine();
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String novaData = teclado.nextLine();
+                    bancoDeDados.get(matricula).setDataNascimento(LocalDate.parse(novaData,df));
+                    break;
+            }
+
+        } while (escolha != 0);
+
+
+
+        
         return false;
     }
 
