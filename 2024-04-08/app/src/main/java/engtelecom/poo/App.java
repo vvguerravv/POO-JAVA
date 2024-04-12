@@ -72,11 +72,18 @@ public class App {
         return false;
     }
 
-    public boolean atualizar(){
+    public void atualizar(){
         teclado.nextLine();
         System.out.print("Digite a matrícula do aluno que você gostaria de alterar: ");
         String matricula =  teclado.nextLine();
-//        teclado.nextLine();
+
+        if(!bancoDeDados.containsKey(matricula)){
+            while (!bancoDeDados.containsKey(matricula)){
+                System.out.print("Digite uma matrícula válida:");
+                matricula =  teclado.nextLine();
+            }
+        }
+
         System.out.println("Digite o que você gostaria de alterar no cadastro deste aluno e digite 0 para confirmar as alterações: ");
 
         int escolha;
@@ -103,35 +110,55 @@ public class App {
                     String novaData = teclado.nextLine();
                     bancoDeDados.get(matricula).setDataNascimento(LocalDate.parse(novaData,df));
                     break;
+                case 4:
+                    System.out.println("Digite qual o email do aluno: ");
+                    teclado.nextLine();
+                    String novaEmail = teclado.nextLine();
+                    bancoDeDados.get(matricula).setEmail(novaEmail);
+                    break;
+                case 5:
+                    System.out.println("Digite o cpf do aluno: ");
+                    teclado.nextLine();
+                    String novaCpf = teclado.nextLine();
+                    bancoDeDados.get(matricula).setCpf(novaCpf);
+                    break;
             }
 
         } while (escolha != 0);
-
-
-
-        
-        return false;
     }
 
-    public boolean remover(){
-        System.out.println("Removendo");
-        return false;
+    public void remover(){
+        teclado.nextLine();
+        System.out.print("Digite a matrícula do aluno que você gostaria de remover: ");
+        String matricula =  teclado.nextLine();
+        if(!bancoDeDados.containsKey(matricula)){
+            while(!bancoDeDados.containsKey(matricula)){
+                System.out.print("Digite uma matrícula válida: ");
+                matricula =  teclado.nextLine();
+            }
+        }
+        bancoDeDados.remove(matricula);
     }
 
     public void listarUmAluno(){
-        System.out.println("Listando Um");
+        teclado.nextLine();
+        System.out.print("Digite a matrícula do aluno: ");
+        String matricula =  teclado.nextLine();
+        System.out.println(bancoDeDados.get(matricula));
     }
 
     public void listarTodosAlunos(){
-        bancoDeDados.forEach((key,value) -> System.out.println(key + ":" + value));
+        if(!bancoDeDados.isEmpty()){
+            bancoDeDados.forEach((key,value) -> System.out.println(key + ":" + value));
+        }else {
+            System.out.println("Nenhum aluno encontrado");
+        }
     }
 
 
 
     public static void main(String[] args) {
         App app = new App();
-        HashMap<Integer, String> tabela = new HashMap<>();
-
         int opcao;
 
         do {
@@ -151,7 +178,5 @@ public class App {
                 case 5 -> app.listarTodosAlunos();
             }
         } while (opcao != 6);
-
-        System.out.println("===========================");
     }
 }
