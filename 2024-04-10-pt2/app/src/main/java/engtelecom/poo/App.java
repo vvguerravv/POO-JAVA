@@ -6,20 +6,31 @@ package engtelecom.poo;
 import java.util.ArrayList;
 
 public class App {
-    private Carro carros;
+    private Carro carro;
+    private ArrayList<Motor> motores;
 
 
-    public App(Carro carros) {
-        this.carros = carros;
+    public App() {
+        this.motores = new ArrayList<>();
+        this.carro = new Carro("Laranja",new Motor("Padrão",100),"McLaren");
+    }
+
+    public void trocaMotor(Motor m){
+        this.motores.add(this.carro.getMotor());
+        this.carro.setMotor(m);
+    }
+
+    public void trocarCarro(Carro c){
+        this.carro = c;
     }
 
     public static void main(String[] args) {
+        App app = new App();
 
-        Carro McLaren = new Carro("Laranja",new Motor("Pegeout",100));
-        System.out.println(McLaren);
+        app.trocaMotor(new Motor("Ferrari",400));
+        app.trocaMotor(new Motor("Lamborghini",700));
 
-        McLaren.setMotor(new Motor("McLaren",1000));
-        System.out.println(McLaren);
+        app.motores.forEach(System.out::println);
 
     }
 }

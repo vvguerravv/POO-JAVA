@@ -5,6 +5,7 @@ public class Motor {
     private double potencia;
     private String marca;
 
+
     public Motor(String marca, double potencia) {
         this.marca = marca;
         this.potencia = potencia;

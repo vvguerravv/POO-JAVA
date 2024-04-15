@@ -7,10 +7,16 @@ public class Carro {
 
     private String cor;
     private Motor motor;
+    private String modelo;
 
-    public Carro(String cor, Motor motor) {
+    public Carro(String cor, Motor motor,String modelo) {
         this.cor = cor;
         this.motor = motor;
+        this.modelo = modelo;
+    }
+
+    public Motor getMotor() {
+        return motor;
     }
 
     public void setMotor(Motor motor) {
