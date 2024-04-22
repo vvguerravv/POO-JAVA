@@ -1,12 +1,16 @@
 package engtelecom.poo;
 
-public class Email {
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
+public class Email {
     private String valor;
     private String rotulo;
 
     public Email(String valor, String rotulo) {
-        this.valor = setValor(valor);
+        if(!setValor(valor)){
+            this.valor = null;
+        }
         this.rotulo = rotulo;
     }
 
@@ -14,13 +18,14 @@ public class Email {
         return valor;
     }
 
-    public String setValor(String valor) {
-        String eR = "^[\\w−\\+]+(\\.[\\w]+)∗@[\\w−]+(\\.[\\w]+)∗(\\.[a−z]{2,})$";
-        if(valor.matches(eR)){
+    public boolean setValor(String valor) {
+        String eR = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+        if (valor.matches(eR)) {
             this.valor = valor;
-            return valor;
+            return true;
+        } else {
+            return false;
         }
-        return null;
     }
 
     public String getRotulo() {
@@ -31,14 +36,8 @@ public class Email {
         this.rotulo = rotulo;
     }
 
-
-
-
     @Override
     public String toString() {
-        return "Email{" +
-                "valor='" + valor + '\'' +
-                ", rotulo='" + rotulo + '\'' +
-                '}';
+        return "Email: " + this.valor + "  Rótulo: " + this.rotulo;
     }
 }

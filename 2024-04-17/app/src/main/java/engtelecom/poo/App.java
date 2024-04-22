@@ -3,13 +3,19 @@
  */
 package engtelecom.poo;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class App {
+    private static Agenda agenda;
+
+    public App(){
+        this.agenda = new Agenda();
+    }
 
 
     public static void main(String[] args) {
-
+        App app = new App();
 
 
     }

@@ -1,14 +1,15 @@
 package engtelecom.poo;
 
-public class Telefone {
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
-    private String valor;
+public class Telefone {
+    private  String valor;
     private String rotulo;
 
-
-    public Telefone(String valor, String rotulo) {
-        this.valor = valor;
+    public Telefone (String valor, String rotulo){
         this.rotulo = rotulo;
+        this.valor = valor;
     }
 
     public String getValor() {
@@ -29,10 +30,22 @@ public class Telefone {
 
     @Override
     public String toString() {
-        return "Telefone{" +
-                "valor='" + valor + '\'' +
-                ", rotulo='" + rotulo + '\'' +
-                '}';
+        return "Telefone: " + formata() + " Rótulo: " + rotulo;
+    }
+
+    private String  formata(){
+        MaskFormatter mask = null;
+        String resultado = "";
+        try {
+            mask = new MaskFormatter("(##)#####−####");
+            mask.setValueContainsLiteralCharacters(false);
+            mask.setPlaceholderCharacter('_');
+            resultado = mask.valueToString(this.valor);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return resultado;
     }
 
 }
+
