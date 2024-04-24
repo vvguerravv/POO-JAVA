@@ -107,11 +107,14 @@ public class Contato {
 
     @Override
     public String toString() {
-        return "Contato{" +
-                "nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", telefones=" + telefones +
-                ", emails=" + emails +
-                '}';
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Telefones:\n");
+         this.telefones.forEach((c,v) -> sb.append("{" + c + ": " + v + "} "));
+
+
+        return this.nome + " " + this.sobrenome  + " \n " +
+                sb.toString() +
+                " \nEmails: " + this.emails;
     }
 }

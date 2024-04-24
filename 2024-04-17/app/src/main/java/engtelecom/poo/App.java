@@ -4,19 +4,186 @@
 package engtelecom.poo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class App {
     private static Agenda agenda;
+    private static Scanner teclado = new Scanner(System.in);
 
     public App(){
         this.agenda = new Agenda();
     }
 
+    public int menu(){
+        System.out.println("..:Lista telefônica:..");
+        System.out.println("Digite o que deseja fazer no momento:\n1 - Adicionar um novo contato\n2 - Remover um contato\n3 - Adiconar um Email ou um Telefone a um contato\n4 - Atualizar um Email ou Telefone de um contato\n5 - Remover um Email ou um Telefone de um contato\n6 - Listar todos os contatos\n0 - Fechar o aplicativo\n");
+
+        return teclado.nextInt();
+    }
+
+
+    public boolean cadastrarContato(){
+        String nome;
+        String sobrenome;
+        LocalDate dataNascimento;
+
+        System.out.print("Digite o nome do contato: ");
+        nome = teclado.nextLine();
+        System.out.print("Digite o sobrenome do contato: ");
+        sobrenome = teclado.nextLine();
+        System.out.print("Digite a data de nascimento do contato: ");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String data = teclado.nextLine();
+        dataNascimento =LocalDate.parse(data,df);
+        System.out.println(" ");
+        return agenda.addPeople(new Contato(nome, sobrenome, dataNascimento));
+    }
+
+    public boolean removerContato(){
+        agenda.listarContatos();
+        System.out.print("Digite o índice do contato no qual gostaria de remover: ");
+
+       return agenda.removePeople(teclado.nextInt());
+    }
+
+    public boolean addEmailTel(){
+        agenda.listarContatos();
+        System.out.print("Digite a qual contato você gostaria de adicionar um email ou telefone: ");
+        Contato c = agenda.getContatos(teclado.nextInt());
+        teclado.nextLine();
+
+        System.out.print("Digite o que você gostaria de adicionar a este contato, um email ou um telefone:");
+        String op = teclado.nextLine();
+
+        if(op.equalsIgnoreCase("email")){
+            System.out.print("Digite o email do contato: ");
+            String email = teclado.nextLine();
+            System.out.print("Digite o rótulo deste email: ");
+            String rotulo = teclado.nextLine();
+            String eR = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+            if(email.matches(eR)){
+                return agenda.addEmail(rotulo,email,c);
+            }else{
+                System.out.println("O endereço de email é inválido\n");
+                return false;
+            }
+        }else if(op.equalsIgnoreCase("Telefone")){
+            System.out.print("Digite qual o telefone do contato: ");
+            String tel = teclado.nextLine();
+            System.out.print("Digite o rotulo deste telefone: ");
+            String rotulo = teclado.nextLine();
+            return agenda.addTelefone(rotulo,tel,c);
+        } else{
+            return false;
+        }
+
+    }
+
+    public boolean attEmailtel(){
+        agenda.listarContatos();
+        System.out.print("Digite o índice de qual contato você gostaria de atulizar o email ou telefone: ");
+        Contato c = agenda.getContatos(teclado.nextInt());
+        teclado.nextLine();
+
+        System.out.print("Digite o que você gostaria de atualizar neste contato, email ou telefone:");
+        String op = teclado.nextLine();
+
+        if(op.equalsIgnoreCase("Email")){
+            System.out.print("Digite o novo email do contato: ");
+            String email = teclado.nextLine();
+            System.out.print("Digite o rótulo deste email: ");
+            String rotulo = teclado.nextLine();
+            String eR = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+            if(email.matches(eR)){
+                return agenda.updateEmail(rotulo,email,c);
+            }else{
+                System.out.println("O endereço de email é inválido\n");
+                return false;
+            }
+        }else if(op.equalsIgnoreCase("Telefone")){
+            System.out.print("Digite qual o telefone do contato: ");
+            String tel = teclado.nextLine();
+            System.out.print("Digite o rotulo deste telefone: ");
+            String rotulo = teclado.nextLine();
+            return agenda.updateTelefone(rotulo,tel,c);
+        } else{
+            return false;
+        }
+
+    }
+
+    public boolean rmEmailTel(){
+        agenda.listarContatos();
+        System.out.print("Digite qual contato você gostaria de remobver o email ou telefone: ");
+        Contato c = agenda.getContatos(teclado.nextInt());
+        teclado.nextLine();
+
+        System.out.print("Digite o que você gostaria de remover neste contato, email ou telefone:");
+        String op = teclado.nextLine();
+
+        if(op.equalsIgnoreCase("email")){
+            System.out.print("Digite o rótulo deste email que você gostari de remover: ");
+            String rotulo = teclado.nextLine();
+            return agenda.removeEmail(rotulo,c);
+        }else if(op.equalsIgnoreCase("Telefone")){
+            System.out.println("Digite o rotulo deste telefone que você gostaria de remover: ");
+            String rotulo = teclado.nextLine();
+            return agenda.removeTelefone(rotulo,c);
+        } else{
+            return false;
+        }
+
+    }
 
     public static void main(String[] args) {
         App app = new App();
+        int opcao;
 
+        do{
+            opcao = app.menu();
+            teclado.nextLine();
+            switch (opcao){
+                case 1: if(app.cadastrarContato()){
+                    System.out.println("*Contato cadastrado com sucesso!*\n");
+                } else {
+                    System.out.println("*Erro ao cadastrar!*\n");
+                }
+                break;
+
+                case 2: if(app.removerContato()){
+                    System.out.println("*Contato removido com sucesso!*\n");
+                } else {
+                    System.out.println("*Erro ao remover contato!*\n");
+                }
+                teclado.nextLine();
+                break;
+
+                case 3: if(app.addEmailTel()){
+                    System.out.println("*Informações adicionadas com sucesso!*\n");
+                } else{
+                    System.out.println("*Erro ao adicionar informações!*\n");
+                }
+                break;
+
+                case 4: if(app.attEmailtel()){
+                    System.out.println("*Informações atualizadas com sucesso!*\n");
+                } else{
+                    System.out.println("*Erro ao tentar atualizar informações!*\n");
+                }
+                break;
+
+                case 5: if(app.rmEmailTel()){
+                    System.out.println("*Informaçẽos removidas com sucesso!*\n");
+                } else{
+                    System.out.println("*Erro ao tentar remover informações!*\n");
+                }
+                break;
+
+                case 6: agenda.listarInteiro();
+                break;
+            }
+        } while (opcao != 0);
 
     }
 }

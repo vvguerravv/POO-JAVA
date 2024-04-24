@@ -30,7 +30,7 @@ public class Telefone {
 
     @Override
     public String toString() {
-        return "Telefone: " + formata() + " Rótulo: " + rotulo;
+        return  formata() ;
     }
 
     private String  formata(){
