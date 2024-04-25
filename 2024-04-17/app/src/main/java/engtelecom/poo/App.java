@@ -123,7 +123,7 @@ public class App {
         String op = teclado.nextLine();
 
         if(op.equalsIgnoreCase("email")){
-            System.out.print("Digite o rótulo deste email que você gostari de remover: ");
+            System.out.print("Digite o rótulo deste email que você gostaria de remover: ");
             String rotulo = teclado.nextLine();
             return agenda.removeEmail(rotulo,c);
         }else if(op.equalsIgnoreCase("Telefone")){

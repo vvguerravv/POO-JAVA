@@ -38,6 +38,6 @@ public class Email {
 
     @Override
     public String toString() {
-        return  this.valor + ": " + this.rotulo;
+        return  this.valor;
     }
 }

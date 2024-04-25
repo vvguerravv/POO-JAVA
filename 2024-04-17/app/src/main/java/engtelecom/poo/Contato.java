@@ -109,12 +109,16 @@ public class Contato {
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Telefones:\n");
+        sb.append("Telefones - ");
          this.telefones.forEach((c,v) -> sb.append("{" + c + ": " + v + "} "));
 
+        StringBuilder sb1 = new StringBuilder();
+        sb1.append("Emails - ");
+        this.emails.forEach((c,v) -> sb1.append("{" + c + ": " + v + "} "));
 
-        return this.nome + " " + this.sobrenome  + " \n " +
+
+        return this.nome + " " + this.sobrenome  + "\n" +
                 sb.toString() +
-                " \nEmails: " + this.emails;
+                "\n" + sb1.toString();
     }
 }
