@@ -12,6 +12,9 @@ public class Carro {
      */
     private int velocidadeAtual;
 
+    private static final int VELOCIDADE_MAXIMA = 120;
+    private static final int VELOCIDADE_MINIMA = 0;
+
     /**
      * Cria um carro com velocidade inicial 0
      */
@@ -26,15 +29,14 @@ public class Carro {
      * @return nova velocidade do carro
      */
     public int acelerar(int i){
-        if(i >= 0 ){
-            if(this.velocidadeAtual + i <= 120){
+        if(i > 0 ){
+            if(this.velocidadeAtual + i <= VELOCIDADE_MAXIMA){
                 this.velocidadeAtual+=i;
             }else{
-                this.velocidadeAtual = 120;
+                this.velocidadeAtual = VELOCIDADE_MAXIMA;
             }
         }
         return this.velocidadeAtual;
-
     }
 
     /**
@@ -43,8 +45,12 @@ public class Carro {
      * @return nova velocidade do carro
      */
     public int frear(int i){
-        if(i > 0 && getVelocidadeAtual() > 0){
-            this.velocidadeAtual-=i;
+        if(i > VELOCIDADE_MINIMA && getVelocidadeAtual() > VELOCIDADE_MINIMA){
+            if(this.velocidadeAtual-i < VELOCIDADE_MINIMA){
+                this.velocidadeAtual = VELOCIDADE_MINIMA;
+            }else{
+                this.velocidadeAtual-=i;
+            }
         }
         return this.velocidadeAtual;
     }

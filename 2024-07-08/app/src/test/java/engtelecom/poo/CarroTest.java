@@ -38,7 +38,7 @@ public class CarroTest {
 
         c.acelerar(20);
 
-        assertEquals(0,c.frear(20));
+        assertEquals(0,c.frear(30));
 
         c.acelerar(20);
         assertEquals(10,c.frear(10));
