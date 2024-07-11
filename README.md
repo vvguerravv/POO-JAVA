@@ -1,2 +1,2 @@
 # POO-JAVA
-Neste repositório iremos guardar as aulas, revisões e atividades das aulas
+Neste repositório tenho salvo todas minhas aulas de POO em JAVA, onde terá revisões e atividades das aulas
