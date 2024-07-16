@@ -1,51 +1,24 @@
 package engtelecom.poo;
 
-
 /**
  * Representa um termômetro, que contém a temperatura em Celsius, Fahrenheit ou Kelvin
- *
- * @author Victor Guerra
+ * 
+ * @autor Victor Guerra
  */
-
 public class Termometro {
 
-    /**
-     *Temperatura atual do termômetro
-     */
     private double temperaturaAtual;
-
-    /**
-     * Temperatura máxima do termômetro
-     */
     private double maxTemp;
-
-    /**
-     * Temperatura mínima do termômetro
-     */
     private double minTemp;
-
-    /**
-     * Escala do termômetro(Celsius, Fahrenheit ou Kelvin)
-     */
     private char escala;
 
-    /**
-     * Cria um termômetro com os valores passados. Caso seja passado algum valor inválido, ele irá ser criado com temperatura máxima de 100 °C, mínima de 0 °C, atual de 50 °C e escala °C
-     * @param temperaturaAtual
-     * @param maxTemp
-     * @param minTemp
-     * @param escala
-     */
-
-    public Termometro(double temperaturaAtual,double maxTemp,double minTemp,char escala){
-
-        if(temperaturaAtual < minTemp || temperaturaAtual > maxTemp || maxTemp < minTemp){
+    public Termometro(double temperaturaAtual, double maxTemp, double minTemp, char escala) {
+        if (temperaturaAtual < minTemp || temperaturaAtual > maxTemp || maxTemp < minTemp) {
             temperaturaAtual = 50;
             maxTemp = 100;
             minTemp = 0;
             escala = 'C';
         }
-
 
         this.temperaturaAtual = temperaturaAtual;
         this.maxTemp = maxTemp;
@@ -53,45 +26,48 @@ public class Termometro {
         this.escala = escala;
     }
 
-    /**
-     * Converte a temperatura de uma escala para outra
-     * @param temp
-     * @param escalaInicial
-     * @param escalaFinal
-     * @return
-     */
-    private double conversao(double temp, char escalaInicial, char escalaFinal){
-
-
-
-      return temp;
-    }
-
-    /**
-     * Retorna a temperatura máxima, a mínima e a atual do termômetro em uma determinada escala
-     * @param escala
-     * @return
-     */
-    public String informacoes(char escala){
-        if(this.escala != escala){
-
+    private double conversao(double temp, char escalaInicial, char escalaFinal) {
+        if (escalaInicial == escalaFinal) {
+            return temp;
         }
-//        return "Temperatura atual: " + valor + "\nTemperatua mínima: " + valor + "\nTemp"
-        return "";
+
+        // Converte a temperatura para Celsius
+        double tempEmCelsius;
+        if (escalaInicial == 'F') {
+            tempEmCelsius = (temp - 32) * 5 / 9;
+        } else if (escalaInicial == 'K') {
+            tempEmCelsius = temp - 273.15;
+        } else {
+            tempEmCelsius = temp;
+        }
+
+        // Converte de Celsius para a escala desejada
+        if (escalaFinal == 'F') {
+            return tempEmCelsius * 9 / 5 + 32;
+        } else if (escalaFinal == 'K') {
+            return tempEmCelsius + 273.15;
+        } else {
+            return tempEmCelsius;
+        }
     }
 
-    /**
-     * Retorna a diferença de temperatua entre dois termômetos em uma determinada escala
-     * @param t
-     * @param escala
-     * @return
-     */
-    public double diferenca(Termometro t,char escala){
-        return 5;
+    public String informacoes(char escala) {
+        double tempAtual = conversao(this.temperaturaAtual, this.escala, escala);
+        double tempMax = conversao(this.maxTemp, this.escala, escala);
+        double tempMin = conversao(this.minTemp, this.escala, escala);
+
+        return "Temperatura atual: " + tempAtual + " °C // Temperatura mínima: " + tempMin + " °C // Temperatura máxima: " + tempMax + " °C";
+    }
+
+    public double diferenca(Termometro t, char escala) {
+        double temp1 = conversao(this.temperaturaAtual, this.escala, escala);
+        double temp2 = conversao(t.temperaturaAtual, t.escala, escala);
+
+        return Math.abs(temp1 - temp2);
     }
 
     @Override
     public String toString() {
-        return "Termometro{temperaturaAtual=" + temperaturaAtual +", maxTemp=" + maxTemp +", minTemp=" + minTemp +", escala=" + escala +'}';
+        return "Termometro{temperaturaAtual=" + temperaturaAtual + ", maxTemp=" + maxTemp + ", minTemp=" + minTemp + ", escala=" + escala + '}';
     }
 }
