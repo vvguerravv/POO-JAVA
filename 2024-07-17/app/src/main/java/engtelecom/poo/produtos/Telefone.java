@@ -52,6 +52,8 @@ public class Telefone {
         this.dimensoes = dimensoes;
     }
 
+    public Telefone(){
+    }
     /**
      * Irá retornar todos os dados do telefone
      * @return String
@@ -60,5 +62,11 @@ public class Telefone {
         return "Código do telefone: " + this.codigo + " || N° de série do telefone: " + this.numeroSerie + " || Modelo do telefone: " + this.modelo + " || Cor do telefone: " + this.cor + " || Peso do telefone - " + this.peso + " || Dimensões do telefone: " + this.dimensoes;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 }

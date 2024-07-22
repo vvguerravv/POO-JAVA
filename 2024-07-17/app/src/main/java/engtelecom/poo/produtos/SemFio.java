@@ -26,6 +26,18 @@ public class SemFio extends Telefone {
         this.distanciaOperacao = distanciaOperacao;
     }
 
+    public SemFio(){
+
+    }
+
+    public double getFrequencia() {
+        return frequencia;
+    }
+
+    public void setFrequencia(double frequencia) {
+        this.frequencia = frequencia;
+    }
+
     @Override
     public String imprimirDados(){
 

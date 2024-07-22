@@ -3,6 +3,7 @@
  */
 package engtelecom.poo;
 
+import engtelecom.poo.produtos.Celular;
 import engtelecom.poo.produtos.SemFio;
 import engtelecom.poo.produtos.Telefone;
 
@@ -10,11 +11,27 @@ public class App {
 
 
     public static void main(String[] args) {
+
         Telefone primeiro = new Telefone(9012345,"A1BK08ER4Z56","TS 2510","Preto",10.7,new Dimensoes(10,20,20));
         System.out.println(primeiro.imprimirDados());
 
         SemFio semFio = new SemFio(9012345,"A1BK08ER4Z56","TS 2510","Preto",10.7,new Dimensoes(10,20,20),98.5,16,50);
 
-        System.out.println(semFio.imprimirDados());
+//        System.out.println(semFio.imprimirDados());
+
+        Telefone t = new Telefone();
+
+        SemFio sf = new SemFio();
+
+        Celular celular = new Celular();
+
+        Telefone a = new Celular();
+
+        if(a instanceof Celular){
+            ((Celular) a).getOperationalSystem();
+        }
+
+
+
     }
 }
