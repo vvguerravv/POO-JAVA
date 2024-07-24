@@ -1,6 +1,6 @@
-package engtelecom.poo.javaOfEmpires;
+package engtelecom.poo.javaofempires.personagens;
 
-public class Personagem {
+public abstract class Personagem {
 
     protected int hp;
     protected int nivelAtaque;
@@ -12,13 +12,7 @@ public class Personagem {
         this.velocidade = velocidade;
     }
 
-    public String atacar(){
-        return  " ";
-    }
-
-    public String mover(){
-        return " ";
-    }
+    public abstract String mover();
 
 
 }

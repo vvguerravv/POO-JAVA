@@ -1,6 +1,6 @@
-package engtelecom.poo.javaOfEmpires;
+package engtelecom.poo.javaofempires.personagens;
 
-public class Arqueiro extends Personagem{
+public class Arqueiro extends Personagem implements Guerreiro{
 
     private final static int HP = 35;
     private final static int ATQ = 2;
@@ -19,4 +19,6 @@ public class Arqueiro extends Personagem{
     public String mover() {
         return "Arqueiro movendo-se!";
     }
+
+
 }

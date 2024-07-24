@@ -23,8 +23,8 @@ classDiagram
         
     }
     
-    Classe <|-- Aldeao
-    Classe <|-- Arqueiro
-    Classe <|-- Caveleiro
+    Personagem <|-- Aldeao
+    Personagem <|-- Arqueiro
+    Personagem <|-- Caveleiro
 
 ```

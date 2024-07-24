@@ -1,6 +1,6 @@
-package engtelecom.poo.javaOfEmpires;
+package engtelecom.poo.javaofempires.personagens;
 
-public class Caveleiro extends Personagem{
+public class Caveleiro extends Personagem implements Guerreiro{
 
     private final static int HP = 50;
     private final static int ATQ = 3;
